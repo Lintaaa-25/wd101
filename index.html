@@ -6,16 +6,16 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      background: #f5f5f5;
-      padding: 20px;
+      background: #f0f0f0;
+      padding: 30px;
     }
 
     .container {
       max-width: 600px;
+      margin: auto;
       background: #fff;
       padding: 30px;
-      margin: 0 auto;
-      border-radius: 8px;
+      border-radius: 10px;
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
 
@@ -23,21 +23,18 @@
       text-align: center;
     }
 
-    form label {
+    label {
       display: block;
       margin-top: 15px;
       font-weight: bold;
     }
 
-    form input[type="text"],
-    form input[type="email"],
-    form input[type="password"],
-    form input[type="date"] {
+    input {
       width: 100%;
       padding: 10px;
       margin-top: 5px;
-      border: 1px solid #ccc;
       border-radius: 5px;
+      border: 1px solid #ccc;
     }
 
     .checkbox-label {
@@ -46,29 +43,29 @@
 
     button {
       margin-top: 20px;
-      width: 100%;
-      padding: 10px;
+      padding: 12px;
       background-color: #4CAF50;
       color: white;
+      font-size: 16px;
       border: none;
       border-radius: 5px;
-      font-size: 16px;
+      width: 100%;
     }
 
     table {
       width: 100%;
-      margin-top: 40px;
+      margin-top: 30px;
       border-collapse: collapse;
     }
 
     th, td {
-      border: 1px solid #ddd;
+      border: 1px solid #ccc;
       padding: 10px;
       text-align: center;
     }
 
     th {
-      background-color: #f2f2f2;
+      background-color: #f4f4f4;
     }
   </style>
 </head>
@@ -77,16 +74,16 @@
     <h2>Registration Form</h2>
     <form id="user-form">
       <label for="name">Name</label>
-      <input type="text" id="name" name="name" required />
+      <input type="text" id="name" required />
 
       <label for="email">Email</label>
-      <input type="email" id="email" name="email" required />
+      <input type="email" id="email" required />
 
       <label for="password">Password</label>
-      <input type="password" id="password" name="password" required />
+      <input type="password" id="password" required />
 
       <label for="dob">Date of Birth</label>
-      <input type="date" id="dob" name="dob" required />
+      <input type="date" id="dob" required />
 
       <div class="checkbox-label">
         <label>
@@ -98,7 +95,7 @@
       <button type="submit">Register</button>
     </form>
 
-    <table id="user-table">
+    <table>
       <thead>
         <tr>
           <th>Name</th>
@@ -108,13 +105,12 @@
           <th>Accepted terms?</th>
         </tr>
       </thead>
-      <tbody id="user-entries">
-        <!-- Entries inserted here -->
-      </tbody>
+      <tbody id="user-entries"></tbody>
     </table>
   </div>
 
   <script src="index.js"></script>
 </body>
 </html>
+
 
