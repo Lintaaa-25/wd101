@@ -2,7 +2,7 @@ const form = document.getElementById("user-form");
 const dobInput = document.getElementById("dob");
 const userEntriesTable = document.getElementById("user-entries");
 
-// Set min and max DOB (18-55 years)
+// Set DOB range between 18 and 55
 const today = new Date();
 const maxDOB = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
 const minDOB = new Date(today.getFullYear() - 55, today.getMonth(), today.getDate());
@@ -10,18 +10,18 @@ const minDOB = new Date(today.getFullYear() - 55, today.getMonth(), today.getDat
 dobInput.max = maxDOB.toISOString().split("T")[0];
 dobInput.min = minDOB.toISOString().split("T")[0];
 
-// Get entries from localStorage
+// Retrieve user entries from localStorage
 function getUserEntries() {
   const entries = localStorage.getItem("user-entries");
   return entries ? JSON.parse(entries) : [];
 }
 
-// Save entries to localStorage
+// Save user entries to localStorage
 function saveUserEntries(entries) {
   localStorage.setItem("user-entries", JSON.stringify(entries));
 }
 
-// Display all entries in table
+// Render the entries in the table
 function displayEntries() {
   const entries = getUserEntries();
   userEntriesTable.innerHTML = "";
@@ -33,25 +33,25 @@ function displayEntries() {
       <td>${entry.email}</td>
       <td>${entry.password}</td>
       <td>${entry.dob}</td>
-      <td>${entry.acceptTerms ? "Yes" : "No"}</td>
+      <td>${entry.acceptTerms}</td>
     `;
     userEntriesTable.appendChild(row);
   });
 }
 
-// Validate email format
+// Custom email validation
 function isValidEmail(email) {
   const pattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return pattern.test(email);
 }
 
-// Validate DOB range
+// Validate DOB
 function isValidDOB(dob) {
   const dobDate = new Date(dob);
   return dobDate >= minDOB && dobDate <= maxDOB;
 }
 
-// Handle form submission
+// Form submission handler
 form.addEventListener("submit", function (event) {
   event.preventDefault();
 
@@ -62,7 +62,7 @@ form.addEventListener("submit", function (event) {
   const acceptTerms = document.getElementById("acceptTerms").checked;
 
   if (!isValidEmail(email)) {
-    alert("Please enter a valid email address.");
+    alert("Invalid email");
     return;
   }
 
@@ -76,18 +76,19 @@ form.addEventListener("submit", function (event) {
     email,
     password,
     dob,
-    acceptTerms
+    acceptTerms: acceptTerms ? true : false
   };
 
   const entries = getUserEntries();
   entries.push(newEntry);
   saveUserEntries(entries);
-  displayEntries(); // show new entry immediately
-  form.reset(); // clear form
+  displayEntries();
+  form.reset();
 });
 
-// Load existing entries on page load
+// On page load, show table with only headers
 window.addEventListener("DOMContentLoaded", displayEntries);
+
 
 
 
