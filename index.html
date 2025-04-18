@@ -30,6 +30,7 @@
     }
 
     input[type="text"],
+    input[type="email"],
     input[type="password"],
     input[type="date"] {
       width: 100%;
@@ -74,22 +75,16 @@
       background-color: #007bff;
       color: white;
     }
-
-    .error {
-      color: red;
-      font-size: 14px;
-    }
   </style>
 </head>
 <body>
   <h2>Registration Form</h2>
-  <form id="user-form">
+  <form id="user-form" novalidate>
     <label for="name">Name:</label>
     <input type="text" id="name" required />
 
     <label for="email">Email:</label>
-    <input type="text" id="email" required />
-    <span id="email-error" class="error"></span>
+    <input type="email" id="email" required />
 
     <label for="password">Password:</label>
     <input type="password" id="password" required />
