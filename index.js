@@ -55,7 +55,6 @@ function saveUserForm(event) {
   const password = document.getElementById("password").value;
   const dob = document.getElementById("dob").value;
   const acceptedTermsAndConditions = document.getElementById("acceptTerms").checked;
-  const emailError = document.getElementById("email-error");
 
   if (name.length < 2) {
     alert("Please enter a valid name (at least 2 characters).");
@@ -63,10 +62,8 @@ function saveUserForm(event) {
   }
 
   if (!isValidEmail(email)) {
-    emailError.textContent = "Please enter a valid email address.";
+    alert("Please enter a valid email address.");
     return;
-  } else {
-    emailError.textContent = "";
   }
 
   if (password.length < 6) {
