@@ -11,14 +11,12 @@ const displayEntries = () => {
   const entries = retrieveEntries();
 
   const tableEntries = entries.map((entry) => {
-    return `
-      <tr>
-        <td class='border px-4 py-2'>${entry.name}</td>
-        <td class='border px-4 py-2'>${entry.email}</td>
-        <td class='border px-4 py-2'>${entry.password}</td>
-        <td class='border px-4 py-2'>${entry.dob}</td>
-        <td class='border px-4 py-2'>${entry.acceptedTermsAndconditions}</td>
-      </tr>`;
+    const nameCell = `<td class='border px-4 py-2'>${entry.name}</td>`;
+    const emailCell = `<td class='border px-4 py-2'>${entry.email}</td>`;
+    const passwordCell = `<td class='border px-4 py-2'>${entry.password}</td>`;
+    const dobCell = `<td class='border px-4 py-2'>${entry.dob}</td>`;
+    const acceptTermsCell = `<td class='border px-4 py-2'>${entry.acceptedTermsAndconditions}</td>`;
+    return `<tr>${nameCell}${emailCell}${passwordCell}${dobCell}${acceptTermsCell}</tr>`;
   }).join("\n");
 
   const table = `
@@ -35,17 +33,6 @@ const displayEntries = () => {
 
   document.getElementById("user-entries").innerHTML = table;
 };
-
-function getAge(dob) {
-  const today = new Date();
-  const birthDate = new Date(dob);
-  let age = today.getFullYear() - birthDate.getFullYear();
-  const m = today.getMonth() - birthDate.getMonth();
-  if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-    age--;
-  }
-  return age;
-}
 
 function setDobRange() {
   const today = new Date();
@@ -82,12 +69,9 @@ const saveUserForm = (event) => {
   userForm.reset();
 };
 
+userForm.addEventListener("submit", saveUserForm);
 
 window.addEventListener("DOMContentLoaded", () => {
   displayEntries();
   setDobRange();
 });
-
-
-
-userForm.addEventListener("submit", saveUserForm);
