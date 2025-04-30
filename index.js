@@ -36,14 +36,19 @@ const displayEntries = () => {
 
 function setDobRange() {
   const today = new Date();
-  const maxDate = new Date(today.getFullYear() - 18, today.getMonth(), today.getDate());
-  const minDate = new Date(today.getFullYear() - 55, today.getMonth(), today.getDate());
+  const currentYear = today.getFullYear();
+
+  const minYear = currentYear - 55;
+  const maxYear = currentYear - 18;
+
+  const minDate = new Date(minYear, 0, 1);     // Jan 1
+  const maxDate = new Date(maxYear, 11, 31);   // Dec 31
 
   const formatDate = (date) => date.toISOString().split("T")[0];
 
   const dobInput = document.getElementById("dob");
-  dobInput.max = formatDate(maxDate);
   dobInput.min = formatDate(minDate);
+  dobInput.max = formatDate(maxDate);
 }
 
 const saveUserForm = (event) => {
@@ -75,3 +80,4 @@ window.addEventListener("DOMContentLoaded", () => {
   displayEntries();
   setDobRange();
 });
+
